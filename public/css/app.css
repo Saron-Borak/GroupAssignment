@@ -1,0 +1,109 @@
+/*
+ * EAMU Educational MIS - theme layered over Bootstrap 5.
+ * Plain stylesheet: this project has no asset build step.
+ */
+:root {
+    --mis-ink: #14243d;
+    --mis-ink-2: #1d3459;
+    --mis-accent: #0f8a72;
+    --mis-gold: #b8860b;
+    --mis-sidebar: 248px;
+}
+
+body {
+    background-color: #f5f7fa;
+    font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------------- shell ---------------- */
+.app-sidebar {
+    width: var(--mis-sidebar);
+    background: linear-gradient(180deg, #14243d 0%, #1d3459 100%);
+    min-height: 100vh;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 1030;
+    overflow-y: auto;
+}
+
+.app-main { margin-left: var(--mis-sidebar); min-height: 100vh; }
+
+.app-sidebar .nav-link {
+    color: rgba(255,255,255,.72);
+    border-radius: .5rem;
+    padding: .55rem .85rem;
+    margin-bottom: .15rem;
+    font-size: .93rem;
+}
+.app-sidebar .nav-link:hover { color: #fff; background-color: rgba(255,255,255,.08); }
+.app-sidebar .nav-link.active {
+    color: #fff;
+    background-color: rgba(15,138,114,.28);
+    box-shadow: inset 3px 0 0 var(--mis-accent);
+}
+.app-sidebar .nav-section {
+    font-size: .7rem; letter-spacing: .09em; text-transform: uppercase;
+    color: rgba(255,255,255,.38); padding: 1rem .85rem .35rem;
+}
+
+.brand-mark {
+    width: 38px; height: 38px; display: grid; place-items: center;
+    border-radius: .6rem; background: var(--mis-accent); color: #fff;
+    font-weight: 700; flex: none; font-size: .8rem;
+}
+
+.avatar-bubble {
+    width: 34px; height: 34px; display: grid; place-items: center;
+    border-radius: 50%; background: var(--mis-ink); color: #fff;
+    font-size: .78rem; font-weight: 600;
+}
+
+/* ---------------- cards & tables ---------------- */
+.card { border: 1px solid #e5e9f0; border-radius: .7rem; box-shadow: 0 1px 2px rgba(20,36,61,.04); }
+.table > :not(caption) > * > * { padding: .65rem .75rem; }
+.table thead th {
+    font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
+    color: #6b7891; font-weight: 600; border-bottom-width: 1px;
+}
+.table-hover > tbody > tr:hover > * { background-color: #f8fafc; }
+
+.stat-card .stat-icon {
+    width: 46px; height: 46px; display: grid; place-items: center;
+    border-radius: .6rem; font-size: 1.25rem;
+}
+
+/* ---------------- student profile ---------------- */
+.student-photo {
+    width: 132px; height: 132px; object-fit: cover;
+    border-radius: .7rem; border: 1px solid #e5e9f0; background: #fff;
+}
+.student-photo-empty {
+    width: 132px; height: 132px; display: grid; place-items: center;
+    border-radius: .7rem; background: var(--mis-ink); color: #fff;
+    font-size: 2.4rem; font-weight: 600;
+}
+
+.meter { height: 7px; border-radius: 4px; background-color: #e9edf3; overflow: hidden; }
+.meter > span { display: block; height: 100%; border-radius: 4px; }
+
+.row-at-risk { background-color: #fff6f6 !important; }
+
+/* Each integrated module keeps its own accent, so the profile page makes the
+   source of every figure obvious. */
+.module-attendance { border-left: 3px solid #0f8a72; }
+.module-submissions { border-left: 3px solid #2f6fb5; }
+.module-complaints { border-left: 3px solid #b8860b; }
+
+.repeat-row { background: #f8fafc; border: 1px solid #e5e9f0; border-radius: .5rem; }
+
+@media print {
+    .app-sidebar, .app-topbar, .no-print { display: none !important; }
+    .app-main { margin-left: 0 !important; }
+    body { background: #fff; }
+}
+
+@media (max-width: 991.98px) {
+    .app-sidebar { transform: translateX(-100%); transition: transform .2s ease-in-out; }
+    .app-sidebar.show { transform: translateX(0); }
+    .app-main { margin-left: 0; }
+}

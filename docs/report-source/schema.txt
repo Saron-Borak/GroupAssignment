@@ -1,0 +1,135 @@
+users|id|bigint(20) unsigned|NO|PRI
+users|name|varchar(255)|NO|
+users|email|varchar(255)|NO|UNI
+users|email_verified_at|timestamp|YES|
+users|password|varchar(255)|NO|
+users|role|varchar(20)|NO|MUL
+users|is_active|tinyint(1)|NO|MUL
+users|remember_token|varchar(100)|YES|
+users|created_at|timestamp|YES|
+users|updated_at|timestamp|YES|
+departments|id|bigint(20) unsigned|NO|PRI
+departments|code|varchar(20)|NO|UNI
+departments|name|varchar(255)|NO|
+departments|created_at|timestamp|YES|
+departments|updated_at|timestamp|YES|
+programs|id|bigint(20) unsigned|NO|PRI
+programs|department_id|bigint(20) unsigned|NO|MUL
+programs|code|varchar(20)|NO|UNI
+programs|name|varchar(255)|NO|
+programs|level|varchar(20)|NO|MUL
+programs|duration_years|tinyint(3) unsigned|NO|
+programs|created_at|timestamp|YES|
+programs|updated_at|timestamp|YES|
+address_types|id|bigint(20) unsigned|NO|PRI
+address_types|code|varchar(20)|NO|UNI
+address_types|name|varchar(255)|NO|
+address_types|created_at|timestamp|YES|
+address_types|updated_at|timestamp|YES|
+students|id|bigint(20) unsigned|NO|PRI
+students|user_id|bigint(20) unsigned|YES|UNI
+students|program_id|bigint(20) unsigned|NO|MUL
+students|student_id_no|varchar(30)|NO|UNI
+students|first_name|varchar(80)|NO|
+students|last_name|varchar(80)|NO|MUL
+students|gender|varchar(20)|NO|
+students|date_of_birth|date|NO|
+students|nationality|varchar(60)|YES|
+students|national_id|varchar(40)|YES|UNI
+students|email|varchar(255)|NO|UNI
+students|phone|varchar(30)|YES|
+students|photo_path|varchar(255)|YES|
+students|intake_year|smallint(5) unsigned|NO|
+students|admission_date|date|NO|
+students|status|varchar(20)|NO|MUL
+students|created_at|timestamp|YES|
+students|updated_at|timestamp|YES|
+students|deleted_at|timestamp|YES|
+student_addresses|id|bigint(20) unsigned|NO|PRI
+student_addresses|student_id|bigint(20) unsigned|NO|MUL
+student_addresses|address_type_id|bigint(20) unsigned|NO|MUL
+student_addresses|line1|varchar(255)|NO|
+student_addresses|line2|varchar(255)|YES|
+student_addresses|city|varchar(80)|NO|
+student_addresses|province|varchar(80)|YES|
+student_addresses|postal_code|varchar(20)|YES|
+student_addresses|country|varchar(80)|NO|
+student_addresses|is_primary|tinyint(1)|NO|
+student_addresses|created_at|timestamp|YES|
+student_addresses|updated_at|timestamp|YES|
+guardians|id|bigint(20) unsigned|NO|PRI
+guardians|student_id|bigint(20) unsigned|NO|MUL
+guardians|full_name|varchar(160)|NO|
+guardians|relationship|varchar(20)|NO|
+guardians|phone|varchar(30)|NO|
+guardians|email|varchar(255)|YES|
+guardians|occupation|varchar(120)|YES|
+guardians|is_emergency_contact|tinyint(1)|NO|
+guardians|created_at|timestamp|YES|
+guardians|updated_at|timestamp|YES|
+courses|id|bigint(20) unsigned|NO|PRI
+courses|department_id|bigint(20) unsigned|NO|MUL
+courses|code|varchar(20)|NO|UNI
+courses|title|varchar(255)|NO|
+courses|credit_hours|tinyint(3) unsigned|NO|
+courses|created_at|timestamp|YES|
+courses|updated_at|timestamp|YES|
+class_sections|id|bigint(20) unsigned|NO|PRI
+class_sections|course_id|bigint(20) unsigned|NO|MUL
+class_sections|lecturer_id|bigint(20) unsigned|NO|MUL
+class_sections|term|varchar(30)|NO|
+class_sections|section_code|varchar(10)|NO|
+class_sections|room|varchar(50)|YES|
+class_sections|created_at|timestamp|YES|
+class_sections|updated_at|timestamp|YES|
+enrollments|id|bigint(20) unsigned|NO|PRI
+enrollments|class_section_id|bigint(20) unsigned|NO|MUL
+enrollments|student_id|bigint(20) unsigned|NO|MUL
+enrollments|status|varchar(20)|NO|MUL
+enrollments|enrolled_at|date|NO|
+enrollments|created_at|timestamp|YES|
+enrollments|updated_at|timestamp|YES|
+attendance_sessions|id|bigint(20) unsigned|NO|PRI
+attendance_sessions|class_section_id|bigint(20) unsigned|NO|MUL
+attendance_sessions|session_date|date|NO|
+attendance_sessions|start_time|time|NO|
+attendance_sessions|end_time|time|NO|
+attendance_sessions|topic|varchar(255)|YES|
+attendance_sessions|status|varchar(20)|NO|MUL
+attendance_sessions|created_at|timestamp|YES|
+attendance_sessions|updated_at|timestamp|YES|
+attendance_records|id|bigint(20) unsigned|NO|PRI
+attendance_records|attendance_session_id|bigint(20) unsigned|NO|MUL
+attendance_records|student_id|bigint(20) unsigned|NO|MUL
+attendance_records|status|varchar(20)|NO|MUL
+attendance_records|marked_at|timestamp|YES|
+attendance_records|created_at|timestamp|YES|
+attendance_records|updated_at|timestamp|YES|
+assignments|id|bigint(20) unsigned|NO|PRI
+assignments|class_section_id|bigint(20) unsigned|NO|MUL
+assignments|title|varchar(255)|NO|
+assignments|description|text|YES|
+assignments|deadline|datetime|NO|
+assignments|created_at|timestamp|YES|
+assignments|updated_at|timestamp|YES|
+submissions|id|bigint(20) unsigned|NO|PRI
+submissions|assignment_id|bigint(20) unsigned|NO|MUL
+submissions|student_id|bigint(20) unsigned|NO|MUL
+submissions|file_path|varchar(255)|NO|
+submissions|original_filename|varchar(255)|YES|
+submissions|submitted_at|datetime|NO|
+submissions|status|varchar(20)|NO|MUL
+submissions|created_at|timestamp|YES|
+submissions|updated_at|timestamp|YES|
+complaints|id|bigint(20) unsigned|NO|PRI
+complaints|student_id|bigint(20) unsigned|NO|MUL
+complaints|reference|varchar(20)|NO|UNI
+complaints|category|varchar(30)|NO|MUL
+complaints|title|varchar(255)|NO|
+complaints|description|text|NO|
+complaints|status|varchar(20)|NO|MUL
+complaints|admin_response|text|YES|
+complaints|handled_by|bigint(20) unsigned|YES|MUL
+complaints|resolved_at|timestamp|YES|
+complaints|created_at|timestamp|YES|
+complaints|updated_at|timestamp|YES|
